@@ -17,7 +17,7 @@
 "14. Swirling Truths (2022).mp3",
 "15. Cry No More (2022).mp3",
 "Once Lost BDaSR.jpg",
-"Rev.jpg",
+"Rev.jpg"
     ],
     "Once Lost: TDaTL": [
       "1. Rise of the Arcane City.mp3",
@@ -37,16 +37,32 @@
   },
   "Paraxial Nolar": {
     "The M.M.S.O": [
-      "trackA.mp3",
-      "trackB.mp3",
-      "cover.png"
+      "1. Paraxial Nolar - Confront.mp3",
+"2. Paraxial Nolar - Tyrannical.mp3",
+"3. Celldweller - Switchback (Cover by Paraxial Nolar).mp3",
+"4. Paraxial Nolar - Logical.mp3",
+"5. Ap2 - Resurrection Of The Ravens (Alternate Adaptation by Paraxial Nolar).mp3",
+"6. Paraxial Nolar - Maniacal.mp3",
+"7. Paraxial Nolar - Days of Gray.mp3",
+"8. Paraxial Nolar - The M.M.S.O.mp3",
+"9. Paraxial Nolar - Merciful.mp3",
+"Paraxial Nolar.png",
+"The M.M.S.O.png"
     ]
   },
   "Technological Disguise": {
     "Technological Disguise (Self-Titled)": [
-      "songX.mp3",
-      "songY.mp3",
-      "image.png"
+"1. Technological Disguise - Technological.mp3",
+"2. Technological Disguise - Menace.mp3",
+"3. Technological Disguise - Passive Defiance.mp3",
+"4. Technological Disguise - Deletion.mp3",
+"5. Paraxial Nolar - Within the Breath of Life.mp3",
+"6. Technological Disguise - Mindbreak.mp3",
+"7. Wrath of the Revenant - On the Wings of Death.mp3",
+"8. Technological Disguise - Dance of the Dusty Deviant.mp3",
+"9. Technological Disguise - Disguise.mp3",
+"TD.PNG",
+"Technological Disguise.PNG"
     ]
   }
 }
