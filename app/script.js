@@ -111,7 +111,7 @@ async function loadMusic(projectName, container) {
             const albumDiv = document.createElement("div");
             albumDiv.className = "album";
 
-            let html = `<h4>${album}</h4><ul>`;
+            let html = `<h3>${album}</h3><ul><br>`;
 
             files.forEach(file => {
                 const ext = file.split(".").pop().toLowerCase();
