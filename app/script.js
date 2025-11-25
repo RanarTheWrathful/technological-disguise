@@ -113,21 +113,30 @@ async function loadMusic(projectName, container) {
 
             let html = `<h3>${album}</h3><ul><br>`;
 
-            files.forEach(file => {
-                const ext = file.split(".").pop().toLowerCase();
-                const url = `./${projectKey}/${album}/${file}`; // relative path to HTML
+         files.forEach(file => {
+    const ext = file.split(".").pop().toLowerCase();
+    const url = `./${projectKey}/${album}/${file}`; // relative path to HTML
 
-                if (["mp3", "wav", "ogg"].includes(ext)) {
-                    // Name above audio
-                    html += `<li><div class="file-name">${file}</div><audio controls src="${url}"></audio></li>`;
-                } else if (["png", "jpg", "jpeg", "webp"].includes(ext)) {
-                    // Name above image
-                    html += `<li><div class="file-name">${file}</div><img src="${url}" class="song-image" alt="${file}"></li>`;
-                } else {
-                    // Name as download link
-                    html += `<li><div class="file-name">${file}</div><a href="${url}" download>Download</a></li>`;
-                }
-            });
+    if (["mp3", "wav", "ogg"].includes(ext)) {
+        html += `
+        <li class="song-item">
+            <span class="file-name">${file}</span>
+            <audio controls src="${url}"></audio>
+        </li>`;
+    } else if (["png", "jpg", "jpeg", "webp"].includes(ext)) {
+        html += `
+        <li class="song-item">
+            <span class="file-name">${file}</span>
+            <img src="${url}" class="song-image" alt="${file}">
+        </li>`;
+    } else {
+        html += `
+        <li class="song-item">
+            <span class="file-name">${file}</span>
+            <a href="${url}" download>Download</a>
+        </li>`;
+    }
+});
 
             html += "</ul>";
 
