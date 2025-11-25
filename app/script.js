@@ -82,51 +82,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Loads files from music.json
 async function loadMusic(projectName, container) {
-    const res = await fetch("music.json");
-    const data = await res.json();
+    try {
+        const res = await fetch("music.json");
+        const data = await res.json();
 
-    const projectKey = Object.keys(data).find(k =>
-        k.toLowerCase().replace(/ /g, "-") === projectName
-    );
+        const projectKey = Object.keys(data).find(k =>
+            k.toLowerCase().replace(/ /g, "-") === projectName
+        );
 
-    if (!projectKey) {
-        container.innerHTML += "<p>No data found.</p>";
-        return;
-    }
+        if (!projectKey) {
+            container.innerHTML += "<p>No data found.</p>";
+            return;
+        }
 
-    const albums = data[projectKey];
+        const albums = data[projectKey];
 
-    container.innerHTML += "<div class='album-list'></div>";
-    const albumList = container.querySelector(".album-list");
+        // Create or clear album list
+        let albumList = container.querySelector(".album-list");
+        if (!albumList) {
+            container.innerHTML += "<div class='album-list'></div>";
+            albumList = container.querySelector(".album-list");
+        }
+        albumList.innerHTML = "";
 
-    albumList.innerHTML = ""; // clear old results
+        for (const album in albums) {
+            const files = albums[album];
 
-    for (const album in albums) {
-        const files = albums[album];
+            const albumDiv = document.createElement("div");
+            albumDiv.className = "album";
 
-        const albumDiv = document.createElement("div");
-        albumDiv.className = "album";
+            let html = `<h4>${album}</h4><ul>`;
 
-        let html = `<h4>${album}</h4><ul>`;
+            files.forEach(file => {
+                const ext = file.split(".").pop().toLowerCase();
+                const url = `./${projectKey}/${album}/${file}`; // relative path to HTML
 
-        files.forEach(file => {
-            const ext = file.split(".").pop().toLowerCase();
-            const url = `/${projectKey}/${album}/${file}`; // adjust path if needed
+                if (["mp3", "wav", "ogg"].includes(ext)) {
+                    // Name above audio
+                    html += `<li><div class="file-name">${file}</div><audio controls src="${url}"></audio></li>`;
+                } else if (["png", "jpg", "jpeg", "webp"].includes(ext)) {
+                    // Name above image
+                    html += `<li><div class="file-name">${file}</div><img src="${url}" class="song-image" alt="${file}"></li>`;
+                } else {
+                    // Name as download link
+                    html += `<li><div class="file-name">${file}</div><a href="${url}" download>Download</a></li>`;
+                }
+            });
 
-           if (["mp3", "wav", "ogg"].includes(ext)) {
-    html += `<li><div class="file-name">${file}</div><audio controls src="${url}"></audio></li>`;
-} else if (["png", "jpg", "jpeg", "webp"].includes(ext)) {
-                html += `<li><img src="${url}" class="song-image" alt="${file}"></li>`;
-            } else {
-                html += `<li><a href="${url}" download>${file}</a></li>`;
-            }
-        });
+            html += "</ul>";
 
-        html += "</ul>";
-
-        albumDiv.innerHTML = html;
-        albumList.appendChild(albumDiv);
+            albumDiv.innerHTML = html;
+            albumList.appendChild(albumDiv);
+        }
+    } catch (err) {
+        console.error("Failed to load music:", err);
+        container.innerHTML += "<p>Error loading music data.</p>";
     }
 }
-
-
