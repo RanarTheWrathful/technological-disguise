@@ -104,3 +104,19 @@ footer {
     font-weight: bold;
     color: #007bff;
 }
+.album {
+    margin: 20px 0;
+    padding: 10px;
+    border-left: 4px solid #888;
+}
+
+.album ul {
+    list-style: none;
+    padding: 0;
+}
+
+.song-image {
+    max-width: 200px;
+    margin: 5px 0;
+}
+
