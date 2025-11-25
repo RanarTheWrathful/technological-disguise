@@ -113,10 +113,9 @@ async function loadMusic(projectName, container) {
             const ext = file.split(".").pop().toLowerCase();
             const url = `/${projectKey}/${album}/${file}`; // adjust path if needed
 
-            if (["mp3", "wav", "ogg"].includes(ext)) {
-                // Name on top
-                html += `<li>${file}<br><audio controls src="${url}"></audio></li>`;
-            } else if (["png", "jpg", "jpeg", "webp"].includes(ext)) {
+           if (["mp3", "wav", "ogg"].includes(ext)) {
+    html += `<li><div class="file-name">${file}</div><audio controls src="${url}"></audio></li>`;
+} else if (["png", "jpg", "jpeg", "webp"].includes(ext)) {
                 html += `<li><img src="${url}" class="song-image" alt="${file}"></li>`;
             } else {
                 html += `<li><a href="${url}" download>${file}</a></li>`;
