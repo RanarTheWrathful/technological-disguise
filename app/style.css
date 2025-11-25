@@ -114,6 +114,10 @@ footer {
     list-style: none;
     padding: 0;
 }
+.file-name {
+    margin-bottom: 0.25em; /* small space between name and audio */
+    font-weight: bold;
+}
 
 .song-image {
     max-width: 200px;
