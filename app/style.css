@@ -116,13 +116,16 @@ footer {
     margin-bottom: 1em;
 }
 
-.file-name {
-    font-weight: bold;
-    margin-bottom: 0.25em; /* space between name and media */
+.song-item {
+    display: flex;
+    flex-direction: column; /* stack name above media */
+    align-items: flex-start;
+    margin-bottom: 1em;
 }
 
-.song-image {
-    max-width: 200px;
-    margin: 5px 0;
+.file-name {
+    font-weight: bold;
+    margin-bottom: 0.25em;
 }
+
 
