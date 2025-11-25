@@ -53,3 +53,79 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    // Handle main tabs
+    document.querySelectorAll(".tab-link").forEach(link => {
+        link.addEventListener("click", e => {
+            e.preventDefault();
+            const tab = e.target.dataset.tab;
+
+            document.querySelectorAll(".tab-content").forEach(t => t.style.display = "none");
+            document.getElementById(tab).style.display = "block";
+        });
+    });
+
+    // Handle music sub-tabs
+    document.querySelectorAll(".sub-tab-link").forEach(link => {
+        link.addEventListener("click", e => {
+            e.preventDefault();
+            const sub = e.target.dataset.subtab;
+
+            document.querySelectorAll(".sub-tab-content").forEach(t => t.style.display = "none");
+            const target = document.getElementById(sub);
+            target.style.display = "block";
+
+            loadMusic(sub, target);
+        });
+    });
+});
+
+// Loads files from music.json
+async function loadMusic(projectName, container) {
+    const res = await fetch("app/music.json");
+    const data = await res.json();
+
+    const projectKey = Object.keys(data).find(k =>
+        k.toLowerCase().replace(/ /g, "-") === projectName
+    );
+
+    if (!projectKey) {
+        container.innerHTML += "<p>No data found.</p>";
+        return;
+    }
+
+    const albums = data[projectKey];
+
+    container.innerHTML += "<div class='album-list'></div>";
+    const albumList = container.querySelector(".album-list");
+
+    albumList.innerHTML = ""; // clear old results
+
+    for (const album in albums) {
+        const files = albums[album];
+
+        const albumDiv = document.createElement("div");
+        albumDiv.className = "album";
+
+        let html = `<h4>${album}</h4><ul>`;
+
+        files.forEach(file => {
+            const ext = file.split(".").pop().toLowerCase();
+            const url = `/${projectKey}/${album}/${file}`; // GitHub Pages path
+
+            if (["mp3", "wav", "ogg"].includes(ext)) {
+                html += `<li><audio controls src="${url}"></audio><br>${file}</li>`;
+            } else if (["png", "jpg", "jpeg", "webp"].includes(ext)) {
+                html += `<li><img src="${url}" class="song-image" alt="${file}"></li>`;
+            } else {
+                html += `<li><a href="${url}" download>${file}</a></li>`;
+            }
+        });
+
+        html += "</ul>";
+
+        albumDiv.innerHTML = html;
+        albumList.appendChild(albumDiv);
+    }
+}
+
