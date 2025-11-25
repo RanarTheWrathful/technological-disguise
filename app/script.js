@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Loads files from music.json
 async function loadMusic(projectName, container) {
-    const res = await fetch("app/music.json");
+    const res = await fetch("music.json");
     const data = await res.json();
 
     const projectKey = Object.keys(data).find(k =>
