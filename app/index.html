@@ -1,419 +1,115 @@
-<!--
-music_tabs_site.html
-Single-file HTML/CSS/JS app for nested tabs: Welcome / Music / Community
-Music -> Artists (Wrath of the Revenant, Paraxial Nolar, Technological Disguise, Terms of Use)
-Artist -> Albums -> Tracks/Cover art. Tracks and covers can be uploaded, played, and downloaded.
-
-Usage:
- - Open this file in a browser (double-click or serve with a static server)
- - Click Music -> choose an artist -> add album -> upload cover and audio files
- - Uploaded files are stored in-memory and metadata is saved to localStorage so the site persists between reloads
- - You can play tracks inline, download files, remove items, and reorder tracks
-
-Notes:
- - Files are stored as object URLs and metadata is saved to localStorage; object URLs are re-created after reload for files that were uploaded in this session only. For full persistence across sessions, host files on a server and paste URLs when adding tracks.
- - This is a single-file demo; adapt to your backend for large collections and permanent storage.
--->
-
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nested Music Tabs</title>
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#7c3aed;--muted:#9aa4b2;--surface:#0b1320}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(180deg,#071021 0%, #071826 100%); color:#e6eef6;}
-    .app{max-width:1100px;margin:28px auto;padding:20px}
-    header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
-    h1{margin:0;font-size:20px}
-
-    /* main tabs */
-    .tabs{display:flex;gap:8px;margin-bottom:18px}
-    .tab-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;cursor:pointer;color:var(--muted)}
-    .tab-btn.active{background:linear-gradient(90deg, rgba(124,58,237,0.15), rgba(59,130,246,0.06));border-color:rgba(124,58,237,0.35);color:#fff}
-
-    /* content card */
-    .card{background:rgba(255,255,255,0.02);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,0.03)}
-
-    /* nested area */
-    .row{display:flex;gap:16px}
-    .left{width:260px}
-    .right{flex:1}
-
-    /* artist list */
-    .artist-list{display:flex;flex-direction:column;gap:8px}
-    .artist-item{padding:10px;border-radius:8px;cursor:pointer;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted)}
-    .artist-item.active{background:linear-gradient(90deg, rgba(124,58,237,0.08), rgba(59,130,246,0.03));color:#fff}
-
-    /* albums */
-    .albums{display:flex;flex-wrap:wrap;gap:12px}
-    .album-card{width:180px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
-    .album-cover{height:110px;border-radius:6px;background:#0c1522;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .album-cover img{width:100%;height:100%;object-fit:cover}
-    .small{font-size:13px;color:var(--muted)}
-
-    /* album detail */
-    .album-detail{display:flex;gap:16px;align-items:flex-start}
-    .album-meta{width:220px}
-    .tracks{flex:1}
-    .track{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;border:1px dashed rgba(255,255,255,0.02);margin-bottom:8px}
-    .track audio{width:280px}
-    .btn{padding:8px 10px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
-    .muted{color:var(--muted)}
-    .input{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-
-    footer{margin-top:18px;color:var(--muted);font-size:13px}
-
-    @media(max-width:860px){.row{flex-direction:column}.left{width:100%}.album-card{width:48%}}
-    @media(max-width:480px){.album-card{width:100%}.track audio{width:160px}}
-  </style>
+<meta charset="UTF-8">
+<title>Music Site</title>
+<style>
+body { font-family: Arial; background:#111; color:#eee; }
+nav { display:flex; gap:10px; margin-bottom:20px; }
+button { padding:8px 14px; background:#333; color:#fff; border:0; cursor:pointer; }
+button:hover { background:#555; }
+.section { display:none; }
+#artist-tabs, #album-tabs { display:flex; gap:10px; margin:15px 0; flex-wrap:wrap; }
+#track-list img { max-width:200px; margin:10px 0; display:block; }
+.download-btn { margin-left:10px; color:#6cf; }
+</style>
 </head>
 <body>
-  <div class="app">
-    <header>
-      <div class="logo">M</div>
-      <div>
-        <h1>Music Library — Nested Tabs Demo</h1>
-        <div class="small">Welcome / Music / Community — upload tracks and covers, play or download them</div>
-      </div>
-    </header>
 
-    <div class="tabs" role="tablist" aria-label="Main tabs">
-      <button class="tab-btn active" data-tab="welcome">Welcome</button>
-      <button class="tab-btn" data-tab="music">Music</button>
-      <button class="tab-btn" data-tab="community">Community</button>
-    </div>
+<nav>
+  <button onclick="showSection('welcome')">Welcome</button>
+  <button onclick="showSection('music')">Music</button>
+  <button onclick="showSection('community')">Community</button>
+</nav>
 
-    <div id="content">
-      <section data-panel="welcome" class="card">
-        <h2>Welcome</h2>
-        <p class="muted">This demo shows nested tabs: main tabs, artist subtabs, album tabs and per-album tracks with upload/play/download. Try the Music tab.</p>
-      </section>
+<div id="welcome" class="section" style="display:block;">
+  <h1>Welcome</h1>
+  <p>Site intro goes here.</p>
+</div>
 
-      <section data-panel="music" class="card" style="display:none">
-        <div class="row">
-          <aside class="left">
-            <h3 class="small">Artists</h3>
-            <div class="artist-list" id="artistList" role="tablist"></div>
-          </aside>
+<div id="music" class="section">
+  <h1>Music</h1>
 
-          <main class="right">
-            <div id="artistArea">Select an artist</div>
-          </main>
-        </div>
-      </section>
+  <!-- Artist Tabs -->
+  <div id="artist-tabs"></div>
 
-      <section data-panel="community" class="card" style="display:none">
-        <h2>Community</h2>
-        <p class="muted">Share links to your socials, events, or embeddable players here. This area is a placeholder for community features.</p>
-      </section>
-    </div>
+  <!-- Album Tabs -->
+  <div id="album-tabs"></div>
 
-    <footer class="muted">Files uploaded are kept in-memory (object URLs). Metadata is saved to localStorage. For production, upload files to a server and store sensible URLs.</footer>
-  </div>
+  <!-- Tracks + Album Art -->
+  <div id="track-list"></div>
+</div>
 
-  <script>
-    // Data model with prefilled artists and example albums (no files included)
-    const defaultData = {
-      artists:[
-        { id:'wrath', name:'Wrath of the Revenant', albums:[{id:'w-sample',title:'Sample Album',year:2025,tracks:[],cover:null}]},
-        { id:'paraxial', name:'Paraxial Nolar', albums:[{id:'p-sample',title:'Echoes',year:2024,tracks:[],cover:null}]},
-        { id:'tech', name:'Technological Disguise', albums:[{id:'t-sample',title:'Machines',year:2023,tracks:[],cover:null}]},
-        { id:'terms', name:'Terms of Use', albums:[], cover:null }
-      ]
-    }
+<div id="community" class="section">
+  <h1>Community</h1>
+  <p>Community info here.</p>
+</div>
 
-    // load or init
-    let model = JSON.parse(localStorage.getItem('musicModel') || 'null') || defaultData
-    // in-memory file map for object URLs (not fully persistent)
-    const fileMap = {}
-
-    const artistListEl = document.getElementById('artistList')
-    const artistArea = document.getElementById('artistArea')
-
-    // main tabs
-    document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>{
-      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'))
-      btn.classList.add('active')
-      const tab = btn.dataset.tab
-      document.querySelectorAll('[data-panel]').forEach(p=>p.style.display = p.dataset.panel === tab ? '' : 'none')
-      if(tab==='music') renderArtists()
-    }))
-
-    function saveModel(){
-      localStorage.setItem('musicModel', JSON.stringify(model))
-    }
-
-    function renderArtists(){
-      artistListEl.innerHTML = ''
-      model.artists.forEach(artist=>{
-        const el = document.createElement('button')
-        el.className = 'artist-item'
-        el.textContent = artist.name
-        el.dataset.id = artist.id
-        el.addEventListener('click',()=>{
-          document.querySelectorAll('.artist-item').forEach(a=>a.classList.remove('active'))
-          el.classList.add('active')
-          renderArtistArea(artist)
-        })
-        artistListEl.appendChild(el)
-      })
-      // auto-select first artist
-      const first = artistListEl.querySelector('button')
-      if(first) first.click()
-    }
-
-    function renderArtistArea(artist){
-      if(artist.id === 'terms'){
-        artistArea.innerHTML = `<h2>Terms of Use</h2><p class='muted'>This is sample terms text for the demo. Replace with your project's real terms. Files uploaded here are for testing only and are kept in the browser's memory/localStorage. Do not upload private IP or sensitive data.</p>`
-        return
-      }
-
-      const container = document.createElement('div')
-      container.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <div>
-            <h2 style="margin:0">${artist.name}</h2>
-            <div class="small muted">Albums: <span id="albumCount">${artist.albums.length}</span></div>
-          </div>
-          <div>
-            <button class="btn" id="addAlbum">+ Add Album</button>
-          </div>
-        </div>
-        <div class="albums" id="albumsGrid"></div>
-        <hr style="margin:14px 0">
-        <div id="albumDetail">Select an album to view or add tracks</div>
-      `
-      artistArea.innerHTML = ''
-      artistArea.appendChild(container)
-
-      const albumsGrid = container.querySelector('#albumsGrid')
-      function renderAlbums(){
-        albumsGrid.innerHTML = ''
-        artist.albums.forEach(album=>{
-          const card = document.createElement('div'); card.className='album-card'
-          card.innerHTML = `
-            <div class="album-cover">${album.cover ? `<img src="${album.cover}" alt="cover">` : `<div class='muted small'>No cover</div>`}</div>
-            <div style="margin-top:8px"><strong>${album.title}</strong></div>
-            <div class="small muted">${album.year || ''} • ${album.tracks.length} tracks</div>
-            <div style="margin-top:8px;display:flex;gap:8px">
-              <button class="btn ghost" data-album="${album.id}">Open</button>
-              <button class="btn" data-action="delete" data-album="${album.id}">Del</button>
-            </div>
-          `
-          albumsGrid.appendChild(card)
-        })
-        container.querySelector('#albumCount').textContent = artist.albums.length
-        // attach open/delete handlers
-        albumsGrid.querySelectorAll('[data-album]').forEach(b=>b.addEventListener('click', ()=>{
-          const aid = b.dataset.album
-          const album = artist.albums.find(a=>a.id===aid)
-          renderAlbumDetail(artist, album)
-        }))
-        albumsGrid.querySelectorAll('[data-action="delete"]').forEach(b=>b.addEventListener('click', ()=>{
-          const aid=b.dataset.album
-          if(!confirm('Delete album?')) return
-          artist.albums = artist.albums.filter(a=>a.id!==aid)
-          saveModel(); renderAlbums(); document.getElementById('albumDetail').innerHTML='Select an album to view or add tracks'
-        }))
-      }
-
-      renderAlbums()
-
-      container.querySelector('#addAlbum').addEventListener('click', ()=>{
-        const title = prompt('Album title') || 'Untitled'
-        const year = prompt('Year (optional)') || ''
-        const id = `${artist.id}-${Date.now().toString(36)}`
-        const album = {id,title,year,tracks:[],cover:null}
-        artist.albums.push(album)
-        saveModel(); renderAlbums();
-      })
-    }
-
-    function renderAlbumDetail(artist,album){
-      const area = document.getElementById('albumDetail')
-      area.innerHTML = ''
-
-      const detail = document.createElement('div'); detail.className='album-detail'
-      detail.innerHTML = `
-        <div class="album-meta card" style="padding:12px">
-          <div class="album-cover" style="height:180px;margin-bottom:8px">${album.cover ? `<img src="${album.cover}" alt="cover">` : `<div class='muted small'>No cover image</div>`}</div>
-          <div style="margin-bottom:8px"><strong>${album.title}</strong></div>
-          <div class="small muted">${album.year || ''}</div>
-          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
-            <label class="small muted">Upload cover image</label>
-            <input type="file" accept="image/*" id="coverInput">
-            <button class="btn ghost" id="removeCover">Remove cover</button>
-          </div>
-        </div>
-        <div class="tracks card" style="padding:12px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-            <div><strong>Tracks</strong> <span class="small muted">(${album.tracks.length})</span></div>
-            <div>
-              <input id="trackUpload" type="file" accept="audio/*" multiple style="display:none">
-              <button class="btn" id="addTracks">+ Upload tracks</button>
-            </div>
-          </div>
-          <div id="tracksList"></div>
-        </div>
-      `
-      area.appendChild(detail)
-
-      // cover input
-      const coverInput = area.querySelector('#coverInput')
-      coverInput.addEventListener('change', async (e)=>{
-        const f = e.target.files[0]; if(!f) return
-        const url = URL.createObjectURL(f)
-        album.cover = url
-        // store file in fileMap for download ability
-        fileMap[url] = {file:f, name:f.name}
-        saveModel(); renderAlbumDetail(artist,album)
-      })
-      area.querySelector('#removeCover').addEventListener('click', ()=>{
-        if(album.cover && fileMap[album.cover]) URL.revokeObjectURL(album.cover)
-        album.cover = null; saveModel(); renderAlbumDetail(artist,album)
-      })
-
-      // add tracks
-      const trackUpload = area.querySelector('#trackUpload')
-      area.querySelector('#addTracks').addEventListener('click', ()=>trackUpload.click())
-      trackUpload.addEventListener('change', e=>{
-        const files = Array.from(e.target.files)
-        files.forEach(f=>{
-          const url = URL.createObjectURL(f)
-          const track = {id:`trk-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,7)}`,title:f.name,duration:null,url}
-          album.tracks.push(track)
-          fileMap[url] = {file:f, name:f.name}
-        })
-        saveModel(); renderAlbumDetail(artist,album)
-      })
-
-      function renderTracks(){
-        const list = area.querySelector('#tracksList'); list.innerHTML=''
-        if(album.tracks.length===0) list.innerHTML='<div class="muted">No tracks yet — upload audio files.</div>'
-        album.tracks.forEach((t,idx)=>{
-          const tr = document.createElement('div'); tr.className='track'
-          tr.innerHTML = `
-            <div style="flex:1">
-              <div><strong>${t.title}</strong></div>
-              <div class="small muted">${t.id}</div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
-              <audio controls src="${t.url}"></audio>
-              <div style="display:flex;gap:8px">
-                <a class="btn ghost" href="${t.url}" download="${t.title}">Download</a>
-                <button class="btn" data-action="remove" data-track="${t.id}">Remove</button>
-              </div>
-            </div>
-          `
-          list.appendChild(tr)
-        })
-        // remove handlers
-        list.querySelectorAll('[data-action="remove"]').forEach(b=>b.addEventListener('click', ()=>{
-          const id = b.dataset.track
-          const tr = album.tracks.find(x=>x.id===id)
-          if(tr && tr.url && fileMap[tr.url]){
-            // revoke object URL
-            try{ URL.revokeObjectURL(tr.url) } catch(e){}
-            delete fileMap[tr.url]
-          }
-          album.tracks = album.tracks.filter(x=>x.id!==id)
-          saveModel(); renderTracks()
-        }))
-      }
-
-      renderTracks()
-    }
-
-    // initial render
-    renderArtists()
-
-    // expose for debugging (optional)
-    window._musicModel = model
-    window._fileMap = fileMap
-  </script>
-</body>
-</html>
-
-<!-- Integrated music.json dynamic data support -->
 <script>
-const musicData = {
-  "Wrath of the Revenant": {"Once Lost: BDaSR": ["1. Fallen Hero.mp3","2. Wave Your Hands (2022).mp3","3. Tommy Gun (2022).mp3","4. Why Do I Hear Boss Music (2022).mp3","5. Son Dernier Combat (2022).mp3","6. The Loss of Life (2022).mp3","7. Break Through (2022).mp3","8. The Other Side (2022).mp3","9. A World in Shambles.mp3","10. The Deep (2022).mp3","11. Adrift In My Own Mind (2023).mp3","12. Lost in Dreams (2022).mp3","13. Twisted Perception.mp3","14. Swirling Truths (2022).mp3","15. Cry No More (2022).mp3","Once Lost BDaSR.jpg","Rev.jpg"],"Once Lost: TDaTL": ["1. Rise of the Arcane City.mp3","2. Fall of the Arcane City.mp3","3. Corporation Erradication (2023).mp3","4. Dragged Through Existence (2022).mp3","5. The Elements of Time (2023).mp3","6. Not Stoppin' for Nothin' (2022).mp3","7. Justified (2022).mp3","8. Denial (2022).mp3","9. Slowly Fading (2022).mp3","10. (We) Fear Fear (2023).mp3","11. Vile Darkness (2023).mp3","OL_TDaTL.jpg","Once Lost_TDaTL.jpg"]},
-  "Paraxial Nolar": {"The M.M.S.O": ["1. Paraxial Nolar - Confront.mp3","2. Paraxial Nolar - Tyrannical.mp3","3. Celldweller - Switchback (Cover by Paraxial Nolar).mp3","4. Paraxial Nolar - Logical.mp3","5. Ap2 - Resurrection Of The Ravens (Alternate Adaptation by Paraxial Nolar).mp3","6. Paraxial Nolar - Maniacal.mp3","7. Paraxial Nolar - Days of Gray.mp3","8. Paraxial Nolar - The M.M.S.O.mp3","9. Paraxial Nolar - Merciful.mp3","Paraxial Nolar.png","The M.M.S.O.png"]},
-  "Technological Disguise": {"Technological Disguise (Self-Titled)": ["1. Technological Disguise - Technological.mp3","2. Technological Disguise - Menace.mp3","3. Technological Disguise - Passive Defiance.mp3","4. Technological Disguise - Deletion.mp3","5. Paraxial Nolar - Within the Breath of Life.mp3","6. Technological Disguise - Mindbreak.mp3","7. Wrath of the Revenant - On the Wings of Death.mp3","8. Technological Disguise - Dance of the Dusty Deviant.mp3","9. Technological Disguise - Disguise.mp3","TD.PNG","Technological Disguise.PNG"]}
-};
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
 
-// TODO: Integrate musicData with tab rendering logic
-</script>
-<!-- Load music.json dynamically -->
-<script>
-fetch('music.json')
-  .then(res => res.json())
-  .then(data => {
-    window.musicData = data;
-    // TODO: Replace static album/artist loading with dynamic generation using musicData
-    // Example:
-    // populateArtists(data);
-  })
-  .catch(err => console.error('Failed to load music.json:', err));
-</script>
-<script>
 function populateArtists(data) {
-  const artistContainer = document.getElementById('artist-tabs');
-  if (!artistContainer) return;
-  artistContainer.innerHTML = '';
-  Object.keys(data).forEach(artist => {
-    const btn = document.createElement('button');
-    btn.textContent = artist;
-    btn.className = 'artist-btn';
-    btn.onclick = () => populateAlbums(artist, data[artist]);
-    artistContainer.appendChild(btn);
+  const wrap = document.getElementById('artist-tabs');
+  wrap.innerHTML = '';
+  Object.keys(data).forEach(name => {
+    const b = document.createElement('button');
+    b.textContent = name;
+    b.onclick = () => populateAlbums(name, data[name]);
+    wrap.appendChild(b);
   });
 }
+
 function populateAlbums(artist, albums) {
-  const albumContainer = document.getElementById('album-tabs');
-  if (!albumContainer) return;
-  albumContainer.innerHTML = '';
-  Object.keys(albums).forEach(album => {
-    const btn = document.createElement('button');
-    btn.textContent = album;
-    btn.className = 'album-btn';
-    btn.onclick = () => populateTracks(artist, album, albums[album]);
-    albumContainer.appendChild(btn);
+  const wrap = document.getElementById('album-tabs');
+  wrap.innerHTML = '';
+  document.getElementById('track-list').innerHTML = '';
+  Object.keys(albums).forEach(name => {
+    const b = document.createElement('button');
+    b.textContent = name;
+    b.onclick = () => populateTracks(artist, name, albums[name]);
+    wrap.appendChild(b);
   });
 }
-function populateTracks(artist, album, items) {
-  const trackContainer = document.getElementById('track-list');
-  if (!trackContainer) return;
-  trackContainer.innerHTML = '';
-  items.forEach(file => {
+
+function populateTracks(artist, album, files) {
+  const wrap = document.getElementById('track-list');
+  wrap.innerHTML = '';
+  files.forEach(f => {
     const div = document.createElement('div');
-    if (file.toLowerCase().endsWith('.mp3')) {
+    const lower = f.toLowerCase();
+    const path = `${artist}/${album}/${f}`;
+
+    if (lower.endsWith('.mp3')) {
       const audio = document.createElement('audio');
       audio.controls = true;
-      audio.src = `${artist}/${album}/${file}`;
-      const download = document.createElement('a');
-      download.href = audio.src;
-      download.download = file;
-      download.textContent = 'Download';
-      download.className = 'download-btn';
+      audio.src = path;
+
+      const dl = document.createElement('a');
+      dl.href = path;
+      dl.download = f;
+      dl.textContent = 'Download';
+      dl.className = 'download-btn';
+
       div.appendChild(audio);
-      div.appendChild(download);
-    } else if (file.toLowerCase().match(/\.(jpg|png)$/)) {
+      div.appendChild(dl);
+    } else if (lower.endsWith('.jpg') || lower.endsWith('.png')) {
       const img = document.createElement('img');
-      img.src = `${artist}/${album}/${file}`;
-      img.className = 'album-art';
+      img.src = path;
       div.appendChild(img);
     }
-    trackContainer.appendChild(div);
+
+    wrap.appendChild(div);
   });
 }
+
 fetch('music.json')
   .then(r => r.json())
-  .then(d => { window.musicData = d; populateArtists(d); })
-  .catch(e => console.error('music.json load failed:', e));
+  .then(data => { window.musicData = data; populateArtists(data); })
+  .catch(err => console.error('Failed to load JSON', err));
 </script>
+
+</body>
+</html>
