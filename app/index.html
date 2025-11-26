@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Music Site</title>
+<style>
+body { font-family: Arial; background:#444; color:#eee; }
+nav { display:flex; gap:10px; margin-bottom:20px; }
+button { padding:8px 14px; background:#333; color:#fff; border:0; cursor:pointer; }
+button:hover { background:#555; }
+.section { display:none; }
+#artist-tabs, #album-tabs { display:flex; gap:10px; margin:15px 0; flex-wrap:wrap; }
+#track-list img { max-width:200px; margin:10px 0; display:block; }
+.download-btn { margin-left:10px; color:#6cf; }
+</style>
+</head>
+<body>
+
+<nav>
+  <button onclick="showSection('welcome')">Welcome</button>
+  <button onclick="showSection('music')">Music</button>
+  <button onclick="showSection('community')">Community</button>
+</nav>
+
+<div id="welcome" class="section" style="display:block;">
+  <h1>Welcome</h1>
+  <p>Site intro goes here.</p>
+</div>
+
+<div id="music" class="section">
+  <h1>Music</h1>
+
+  <!-- Artist Tabs -->
+  <div id="artist-tabs"></div>
+
+  <!-- Album Tabs -->
+  <div id="album-tabs"></div>
+
+  <!-- Tracks + Album Art -->
+  <div id="track-list"></div>
+</div>
+
+<div id="community" class="section">
+  <h1>Community</h1>
+  <p>Community info here.</p>
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+
+function populateArtists(data) {
+  const wrap = document.getElementById('artist-tabs');
+  wrap.innerHTML = '';
+  Object.keys(data).forEach(name => {
+    const b = document.createElement('button');
+    b.textContent = name;
+    b.onclick = () => populateAlbums(name, data[name]);
+    wrap.appendChild(b);
+  });
+}
+
+function populateAlbums(artist, albums) {
+  const wrap = document.getElementById('album-tabs');
+  wrap.innerHTML = '';
+  document.getElementById('track-list').innerHTML = '';
+  Object.keys(albums).forEach(name => {
+    const b = document.createElement('button');
+    b.textContent = name;
+    b.onclick = () => populateTracks(artist, name, albums[name]);
+    wrap.appendChild(b);
+  });
+}
+
+function populateTracks(artist, album, files) {
+  const wrap = document.getElementById('track-list');
+  wrap.innerHTML = '';
+  files.forEach(f => {
+    const div = document.createElement('div');
+    const lower = f.toLowerCase();
+    const path = `${artist}/${album}/${f}`;
+
+    if (lower.endsWith('.mp3')) {
+      const audio = document.createElement('audio');
+      audio.controls = true;
+      audio.src = path;
+
+      const dl = document.createElement('a');
+      dl.href = path;
+      dl.download = f;
+      dl.textContent = 'Download';
+      dl.className = 'download-btn';
+
+      div.appendChild(audio);
+      div.appendChild(dl);
+    } else if (lower.endsWith('.jpg') || lower.endsWith('.png')) {
+      const img = document.createElement('img');
+      img.src = path;
+      div.appendChild(img);
+    }
+
+    wrap.appendChild(div);
+  });
+}
+
+fetch('music.json')
+  .then(r => r.json())
+  .then(data => {
+    window.musicData = data;
+    // Only load artists at start — albums will load only when artist is clicked
+    populateArtists(data);
+  })(data); })
+  .catch(err => console.error('Failed to load JSON', err));
+</script>
+
+</body>
+</html>
 
