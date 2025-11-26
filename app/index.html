@@ -109,9 +109,8 @@ fetch('music.json')
   .then(r => r.json())
   .then(data => {
     window.musicData = data;
-    // Only load artists at start — albums will load only when artist is clicked
-    populateArtists(data);
-  })(data); })
+    populateArtists(data); // At load: only artists appear
+  })
   .catch(err => console.error('Failed to load JSON', err));
 </script>
 
