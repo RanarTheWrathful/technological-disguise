@@ -72,50 +72,38 @@ function populateAlbums(artist, albums) {
 }
 
 function populateTracks(artist, album, files) {
-  const wrap = document.getElementById('track-list');
-  wrap.innerHTML = '';
+const wrap = document.getElementById('track-list');
+wrap.innerHTML = '';
+files.forEach(f => {
+const div = document.createElement('div');
+const lower = f.toLowerCase();
+const path = `${artist}/${album}/${f}`;
 
-  // Normalize folder names
-  const safeArtist = encodeURIComponent(artist.trim());
-  const safeAlbum  = encodeURIComponent(album.trim());
 
-  files.forEach(f => {
-    const div   = document.createElement('div');
-    const lower = f.toLowerCase();
+if (lower.endsWith('.mp3')) {
+const audio = document.createElement('audio');
+audio.controls = true;
+audio.src = path;
 
-    const title = document.createElement('div');
-    title.className = "track-name";
-    title.textContent = f;
-    div.appendChild(title);
 
-    // Normalize + encode filename
-    const safeFile = encodeURIComponent(f.trim());
+const dl = document.createElement('a');
+dl.href = path;
+dl.download = f;
+dl.textContent = 'Download';
+dl.className = 'download-btn';
 
-    // Build final path from clean components
-    const finalPath = `${safeArtist}/${safeAlbum}/${safeFile}`;
 
-    if (lower.endsWith('.mp3')) {
-      const audio = document.createElement('audio');
-      audio.controls = true;
-      audio.src = finalPath;
+div.appendChild(audio);
+div.appendChild(dl);
+} else if (lower.endsWith('.jpg') || lower.endsWith('.png')) {
+const img = document.createElement('img');
+img.src = path;
+div.appendChild(img);
+}
 
-      const dl = document.createElement('a');
-      dl.href = finalPath;
-      dl.download = f;
-      dl.textContent = 'Download';
-      dl.className = 'download-btn';
 
-      div.appendChild(audio);
-      div.appendChild(dl);
-    }
-    else if (lower.endsWith('.jpg') || lower.endsWith('.png')) {
-      const img = document.createElement('img');
-      img.src = finalPath;
-      div.appendChild(img);
-    }
-
-    wrap.appendChild(div);
-  });
+wrap.appendChild(div);
+});
 }
 
 fetch('music.json')
