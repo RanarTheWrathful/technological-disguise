@@ -21,11 +21,15 @@ button:hover { background:#555; }
   <button onclick="showSection('welcome')">Welcome</button>
   <button onclick="showSection('music')">Music</button>
   <button onclick="showSection('community')">Community</button>
+  <button onclick="showSection('terms-of-use')">Terms of Use</button>
 </nav>
 
 <div id="welcome" class="section" style="display:block;">
   <h1>Welcome</h1>
-  <p>Welcome to our site, this is where Paraxial Nolar and Ranar, The Wrathful(Wrath of the Revenant) post their music and album art. If you wish, you may navigate to the music tab and download them for free! Please check out the Terms of Use tab found within the music tab! If you have any questions for us, please check out the Community tab.</p>
+  <p>Welcome to our site, this is where Paraxial Nolar and Ranar, The Wrathful(Wrath of the Revenant) post their music and album art. <br>
+    If you wish, you may navigate to the music tab and download them for free! <br>
+    Please check out the Terms of Use tab if you plan on sharing the music/art in any form! <br>
+    If you have any questions for us, please check out the Community tab.</p>
 </div>
 
 <div id="music" class="section">
@@ -39,9 +43,18 @@ button:hover { background:#555; }
 
 <div id="community" class="section">
   <h1>Community</h1>
-  <p>Community info here.</p>
+  <p>You may contact us at systemdecline89305@gmail.com or at our discord <a href="https://discord.gg/UaUFuyNmsz">server</a>.</p>
 </div>
-
+  
+<div id="terms-of-use" class="section" style="display:block;">
+  <h1>Terms of Use</h1>
+  <p>All music, artwork, and related materials created by Paraxial Nolar, Wrath of the Revenant, and Technological Disguise are free for anyone to use, modify, and distribute for non-commercial purposes.
+<br>
+Users must provide clear credit to the original creators when using or altering the material.<br>
+Sharing links to any modifications, remixes, or uses of this material is not required but is greatly appreciated.<br>
+  You can contact either using the data provided at the Community tab.</p>
+</div>
+  
 <script>
 function showSection(id) {
   document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
