@@ -75,39 +75,42 @@ function populateTracks(artist, album, files) {
   const wrap = document.getElementById('track-list');
   wrap.innerHTML = '';
 
+  // Normalize folder names
+  const safeArtist = encodeURIComponent(artist.trim());
+  const safeAlbum  = encodeURIComponent(album.trim());
+
   files.forEach(f => {
-    const div = document.createElement('div');
+    const div   = document.createElement('div');
     const lower = f.toLowerCase();
 
-    // Raw path
-    const rawPath = `${artist}/${album}/${f}`;
-
-    // Test Method #2: encodeURI the entire path
-    const safePath = encodeURI(rawPath);
-
-    // Track title
     const title = document.createElement('div');
     title.className = "track-name";
     title.textContent = f;
     div.appendChild(title);
 
+    // Normalize + encode filename
+    const safeFile = encodeURIComponent(f.trim());
+
+    // Build final path from clean components
+    const finalPath = `${safeArtist}/${safeAlbum}/${safeFile}`;
+
     if (lower.endsWith('.mp3')) {
       const audio = document.createElement('audio');
       audio.controls = true;
-      audio.src = safePath;
+      audio.src = finalPath;
 
       const dl = document.createElement('a');
-      dl.href = safePath;
+      dl.href = finalPath;
       dl.download = f;
       dl.textContent = 'Download';
       dl.className = 'download-btn';
 
       div.appendChild(audio);
       div.appendChild(dl);
-    } 
+    }
     else if (lower.endsWith('.jpg') || lower.endsWith('.png')) {
       const img = document.createElement('img');
-      img.src = safePath;
+      img.src = finalPath;
       div.appendChild(img);
     }
 
