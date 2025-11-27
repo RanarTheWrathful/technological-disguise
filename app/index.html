@@ -72,38 +72,44 @@ function populateAlbums(artist, albums) {
 }
 
 function populateTracks(artist, album, files) {
-const wrap = document.getElementById('track-list');
-wrap.innerHTML = '';
-files.forEach(f => {
-const div = document.createElement('div');
-const lower = f.toLowerCase();
-const path = `${artist}/${album}/${f}`;
+    const wrap = document.getElementById('track-list');
+    wrap.innerHTML = '';
 
+    files.forEach(f => {
+        const div = document.createElement('div');
+        div.style.marginBottom = "20px";
 
-if (lower.endsWith('.mp3')) {
-const audio = document.createElement('audio');
-audio.controls = true;
-audio.src = path;
+        const lower = f.toLowerCase();
+        const path = `${artist}/${album}/${f}`;
 
+        // filename on top
+        const name = document.createElement('div');
+        name.className = 'track-name';
+        name.textContent = f;
+        div.appendChild(name);
 
-const dl = document.createElement('a');
-dl.href = path;
-dl.download = f;
-dl.textContent = 'Download';
-dl.className = 'download-btn';
+        if (lower.endsWith('.mp3')) {
+            const audio = document.createElement('audio');
+            audio.controls = true;
+            audio.src = path;
 
+            const dl = document.createElement('a');
+            dl.href = path;
+            dl.download = f;
+            dl.textContent = 'Download';
+            dl.className = 'download-btn';
 
-div.appendChild(audio);
-div.appendChild(dl);
-} else if (lower.endsWith('.jpg') || lower.endsWith('.png')) {
-const img = document.createElement('img');
-img.src = path;
-div.appendChild(img);
-}
+            div.appendChild(audio);
+            div.appendChild(dl);
 
+        } else if (lower.endsWith('.jpg') || lower.endsWith('.png')) {
+            const img = document.createElement('img');
+            img.src = path;
+            div.appendChild(img);
+        }
 
-wrap.appendChild(div);
-});
+        wrap.appendChild(div);
+    });
 }
 
 fetch('music.json')
