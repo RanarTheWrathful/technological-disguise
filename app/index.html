@@ -70,7 +70,9 @@ function populateAlbums(artist, albums) {
     wrap.appendChild(b);
   });
 }
-
+function clean(str) {
+    return str.replace(/\s+/g, '-'); // turn spaces → hyphens
+}
 function populateTracks(artist, album, files) {
     const wrap = document.getElementById('track-list');
     wrap.innerHTML = '';
@@ -80,7 +82,7 @@ function populateTracks(artist, album, files) {
         div.style.marginBottom = "20px";
 
         const lower = f.toLowerCase();
-        const path = `${artist}/${album}/${f}`;
+      const path = `${clean(artist)}/${clean(album)}/${f}`;
 
         // filename on top
         const name = document.createElement('div');
