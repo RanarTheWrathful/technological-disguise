@@ -79,17 +79,17 @@ function populateTracks(artist, album, files) {
     const div = document.createElement('div');
     const lower = f.toLowerCase();
 
+    // Raw path
+    const rawPath = `${artist}/${album}/${f}`;
+
+    // Test Method #2: encodeURI the entire path
+    const safePath = encodeURI(rawPath);
+
     // Track title
     const title = document.createElement('div');
     title.className = "track-name";
     title.textContent = f;
     div.appendChild(title);
-
-    // Build REAL path (not encoded yet)
-    const rawPath = `${artist}/${album}/${f}`;
-
-    // Encode entire thing at once (this was missing!)
-    const safePath = encodeURI(rawPath);
 
     if (lower.endsWith('.mp3')) {
       const audio = document.createElement('audio');
