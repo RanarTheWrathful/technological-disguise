@@ -75,9 +75,6 @@ function populateTracks(artist, album, files) {
   const wrap = document.getElementById('track-list');
   wrap.innerHTML = '';
 
-  const safeArtist = encodeURIComponent(artist);
-  const safeAlbum  = encodeURIComponent(album);
-
   files.forEach(f => {
     const div = document.createElement('div');
     const lower = f.toLowerCase();
@@ -88,16 +85,19 @@ function populateTracks(artist, album, files) {
     title.textContent = f;
     div.appendChild(title);
 
-    const safeFile = encodeURIComponent(f);
-    const path = `${safeArtist}/${safeAlbum}/${safeFile}`;
+    // Build REAL path (not encoded yet)
+    const rawPath = `${artist}/${album}/${f}`;
+
+    // Encode entire thing at once (this was missing!)
+    const safePath = encodeURI(rawPath);
 
     if (lower.endsWith('.mp3')) {
       const audio = document.createElement('audio');
       audio.controls = true;
-      audio.src = path;
+      audio.src = safePath;
 
       const dl = document.createElement('a');
-      dl.href = path;
+      dl.href = safePath;
       dl.download = f;
       dl.textContent = 'Download';
       dl.className = 'download-btn';
@@ -107,7 +107,7 @@ function populateTracks(artist, album, files) {
     } 
     else if (lower.endsWith('.jpg') || lower.endsWith('.png')) {
       const img = document.createElement('img');
-      img.src = path;
+      img.src = safePath;
       div.appendChild(img);
     }
 
