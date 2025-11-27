@@ -80,7 +80,11 @@ function populateTracks(artist, album, files) {
   files.forEach(f => {
     const div = document.createElement('div');
     const lower = f.toLowerCase();
-    const path = `${artist}/${album}/${f}`;
+    const safeArtist = encodeURIComponent(artist);
+const safeAlbum  = encodeURIComponent(album);
+const safeFile   = encodeURIComponent(f);
+const path = `${safeArtist}/${safeAlbum}/${safeFile}`;
+
 
     if (lower.endsWith('.mp3')) {
       const audio = document.createElement('audio');
