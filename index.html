@@ -89,29 +89,53 @@ function populateAlbums(artist, albums) {
     wrap.appendChild(b);
   });
 }
-
 function populateTracks(artist, album, files) {
   const wrap = document.getElementById('track-list');
   wrap.innerHTML = '';
 
-  // Encode ONLY the individual path components
   const artistSafe = encodeURIComponent(artist);
   const albumSafe = encodeURIComponent(album);
 
   files.forEach(f => {
     const div = document.createElement('div');
-    const lower = f.toLowerCase();
+
+    let filename = null;
+    let youtubeId = null;
+    let title = null;
+
+    // Detect object (YouTube item) vs string (normal file)
+    if (typeof f === 'string') {
+      filename = f;
+      title = f;
+    } else if (typeof f === 'object' && f.youtube) {
+      title = f.title || 'YouTube Track';
+      youtubeId = extractYouTubeId(f.youtube);
+    }
 
     // Track title
     const name = document.createElement('div');
     name.className = 'track-name';
-    name.textContent = f;
+    name.textContent = title;
     div.appendChild(name);
 
-    // Encode filename properly
-    const fileSafe = encodeURIComponent(f);
+    // If it's a YouTube item
+    if (youtubeId) {
+      const iframe = document.createElement('iframe');
+      iframe.width = '560';
+      iframe.height = '315';
+      iframe.src = `https://www.youtube.com/embed/${youtubeId}`;
+      iframe.frameBorder = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
 
-    // FINAL correct path using EXACT folder names
+      div.appendChild(iframe);
+      wrap.appendChild(div);
+      return;
+    }
+
+    // Continue with your original file handling
+    const lower = filename.toLowerCase();
+    const fileSafe = encodeURIComponent(filename);
     const path = `${artistSafe}/${albumSafe}/${fileSafe}`;
 
     if (lower.endsWith('.mp3') || lower.endsWith('.wav') || lower.endsWith('.ogg')) {
@@ -121,15 +145,15 @@ function populateTracks(artist, album, files) {
 
       const dl = document.createElement('a');
       dl.href = path;
-      dl.download = f;
+      dl.download = filename;
       dl.textContent = 'Download';
       dl.className = 'download-btn';
 
       div.appendChild(audio);
       div.appendChild(dl);
-    }
-    else if (lower.endsWith('.jpg') || lower.endsWith('.png') ||
-             lower.endsWith('.jpeg') || lower.endsWith('.webp')) {
+
+    } else if (lower.endsWith('.jpg') || lower.endsWith('.png') ||
+               lower.endsWith('.jpeg') || lower.endsWith('.webp')) {
       const img = document.createElement('img');
       img.src = path;
       div.appendChild(img);
@@ -138,6 +162,14 @@ function populateTracks(artist, album, files) {
     wrap.appendChild(div);
   });
 }
+
+// Extract real YouTube ID from ANY valid URL
+function extractYouTubeId(url) {
+  const reg = /(?:v=|\.be\/|embed\/)([A-Za-z0-9_-]{11})/;
+  const match = url.match(reg);
+  return match ? match[1] : null;
+}
+
 
 fetch('music.json')
   .then(r => r.json())
