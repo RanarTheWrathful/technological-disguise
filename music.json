@@ -22,12 +22,20 @@
         { 
     "title": "Celldweller - Switchback (Original)",
     "youtube": "https://www.youtube.com/watch?v=gd8eFRBEXVY"
+  },
+        { 
+    "title": "Hazbin Hotel - Gravity",
+    "youtube": "https://youtu.be/G1C1MFv7CKU?si=1eEBbsFlIPR7UHtJ"
   }
 ],
     "Referenced": [ 
         { 
     "title": "Circle of Dust - Technological Disguise",
     "youtube": "https://www.youtube.com/watch?v=pEM6eKjK95k"
+  },
+        { 
+    "title": "Hazbin Hotel - Gravity",
+    "youtube": "https://youtu.be/G1C1MFv7CKU?si=1eEBbsFlIPR7UHtJ"
   }
 ]
     },
@@ -149,6 +157,27 @@
 "lute1.PNG",
 "lute2.PNG",
 "lute3.png"
+    ],
+      "The Cycle that Never Ceases": [
+"1. Technological Disguise - The Endless.mp3",
+"2. Technological Disguise - Cease.mp3",
+"3. Technological Disguise - Stop.mp3",
+"4. Technological Disguise - Repeat.mp3",
+"5. Technological Disguise - Defeat.mp3",
+"6. Technological Disguise - Fall.mp3",
+"7. Technological Disguise - Lost.mp3",
+"8. Technological Disguise - Self-Taught Lie.mp3",
+"9. Technological Disguise - Reguise.mp3",
+"10. Wrath of the Revenant - A Crack in the Mask.mp3",
+"11. Technological Disguise - Wishes.mp3",
+"12. Technological Disguise - Daylight.mp3",
+"13. Technological Disguise - Dark Night.mp3",
+"14. Technological Disguise - No Recourse.mp3",
+"15. Technological Disguise - The Cycle that Never Ceases.mp3",
+"16. Technological Disguise - The Endless (Instrumental).mp3",
+"17. Technological Disguise - The Cycle that Never Ceases (Instrumental).mp3",
+"TCtNC.png",
+"The Cycle that Never Ceases.png"
     ]
   }
 }
