@@ -182,8 +182,6 @@
   },
    "Tech Rev": {
     "The Cycle that Never Ceases (Album)": [
-     "TCtNC.png",
-     "The Cycle that Never Ceases.png",
      "1. Tech Rev - The Endless.mp3",
   "2. Tech Rev - A Crack in the Mask.mp3",
   "3. Tech Rev - Broken Dreams.mp3",
@@ -206,7 +204,9 @@
   "20. Circle of Dust - Technological Disguise (Instrumental).mp3",
   "21. Tech Rev - The Cycle that Never Ceases (Instrumental).mp3",
   "22. Tech Rev - The Endless (Alt. Demo) (Instrumental).mp3",
-  "23. Tech Rev - Technological Disguise (Alt. Demo) (Instrumental).mp3"
+  "23. Tech Rev - Technological Disguise (Alt. Demo) (Instrumental).mp3",
+     "TCtNC.png",
+     "The Cycle that Never Ceases.png"
     ]
   }
 }
