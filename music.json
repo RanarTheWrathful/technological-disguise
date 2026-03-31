@@ -45,8 +45,6 @@
     },
   "Archive": {
     "Once Lost: BDaSR": [
-"Once Lost BDaSR.jpg",
-"Rev.jpg"
 "1. Fallen Hero.mp3",
 "2. Wave Your Hands (2022).mp3",
 "3. Tommy Gun (2022).mp3",
@@ -62,10 +60,10 @@
 "13. Twisted Perception.mp3",
 "14. Swirling Truths (2022).mp3",
 "15. Cry No More (2022).mp3",
+"Once Lost BDaSR.jpg",
+"Rev.jpg"
     ],
     "Once Lost: TDaTL": [
-      "OL_TDaTL.jpg",
-      "Once Lost_TDaTL.jpg"
       "1. Rise of the Arcane City.mp3",
 "2. Fall of the Arcane City.mp3",
 "3. Corporation Erradication (2023).mp3",
@@ -77,9 +75,10 @@
 "9. Slowly Fading (2022).mp3",
 "10. (We) Fear Fear (2023).mp3",
 "11. Vile Darkness (2023).mp3",
+      "OL_TDaTL.jpg",
+      "Once Lost_TDaTL.jpg"
     ],
     "Broken Dreams and Shattered Realities": [
-  "Broken Dreams and Shattered Realities.jpg"
   "1. Wrath of the Revenant - The Loss of Life (2025).mp3",
   "2. Wrath of the Revenant - Break Through (2025).mp3",
   "3. Wrath of the Revenant - The Other Side (2025).mp3",
@@ -88,15 +87,15 @@
   "6. Wrath of the Revenant - Twisted World.mp3",
   "7. Wrath of the Revenant - Adrift In My Own Mind (2025).mp3",
   "8. Wrath of the Revenant - Shattered Realities.mp3",
+  "9. Wrath of the Revenant - Broken Dreams.mp3",
   "10. Wrath of the Revenant - Cry No More (2025).mp3",
   "11. Wrath of the Revenant - Wave Your Hands (2025).mp3",
   "12. Wrath of the Revenant - Tommy Gun (2025).mp3",
   "13. Wrath of the Revenant - Why Do I Hear Boss Music (2025).mp3",
   "14. Wrath of the Revenant - Son Dernier Combat (2025).mp3",
+  "Broken Dreams and Shattered Realities.jpg"
 ],
     "Shadowlight": [
-  "SL.jpg",
-  "Shadowlight.jpg"
   "1. Wrath of the Revenant - War Machine.mp3",
   "2. Wrath of the Revenant - Ballistic Shield.mp3",
   "3. Wrath of the Revenant - Neutralize.mp3",
@@ -104,45 +103,81 @@
   "5. Wrath of the Revenant - (Un)Real Love.mp3",
   "6. Wrath of the Revenant - Risen.mp3",
   "7. Wrath of the Revenant - Dragged Through Existence (2025).mp3",
+  "8. Wrath of the Revenant - Torment and Despair.mp3",
   "9. Wrath of the Revenant - Justified (2025).mp3",
   "10. Wrath of the Revenant - Descent.mp3",
   "11. Wrath of the Revenant - Into the Dust.mp3",
   "12. Wrath of the Revenant - (Just) Another Day.mp3",
   "13. Wrath of the Revenant - Shadows of Dawn.mp3",
+  "14. Wrath of the Revenant - The War Within.mp3",
+  "15. Wrath of the Revenant - Exodus.mp3",
+  "16. Wrath of the Revenant - The War Within [Instrumental].mp3",
+  "SL.jpg",
+  "Shadowlight.jpg"
 ], 
 "The M.M.S.O (Paraxial Nolar)": [
-"Paraxial Nolar.png",
-"The M.M.S.O.png"
       "1. Paraxial Nolar - Confront.mp3",
+"2. Paraxial Nolar - Tyrannical.mp3",
 "3. Celldweller - Switchback (Cover by Paraxial Nolar).mp3",
+"4. Paraxial Nolar - Logical.mp3",
+"5. Ap2 - Resurrection Of The Ravens (Alternate Adaptation by Paraxial Nolar).mp3",
 "6. Paraxial Nolar - Maniacal.mp3",
 "7. Technological Disguise - Days of Gray.mp3",
+"8. Paraxial Nolar - The M.M.S.O.mp3",
+"9. Paraxial Nolar - Merciful.mp3",
+"Paraxial Nolar.png",
+"The M.M.S.O.png"
     ],
      "Technological Disguise (Self-Titled)": [
-"TD.png",
-"Technological Disguise.png"
 "1. Technological Disguise - Technological.mp3",
 "2. Technological Disguise - Daily Grind.mp3",
 "3. Technological Disguise - Menace.mp3",
 "4. Technological Disguise - Deletion.mp3",
 "5. Technological Disguise - Terrorize.mp3",
 "6. Technological Disguise - Passive Defiance.mp3",
-"8. Technological Disguise - Mindbreak [Explicit].mp3",
+"7. Paraxial Nolar - Within the Breath of Life.mp3",
+"8. Technological Disguise - Mindbreak.mp3",
+"9. Wrath of the Revenant - On the Wings of Death.mp3",
+"10. Technological Disguise - Dance of the Dusty Deviant.mp3",
 "11. Technological Disguise - Disguise.mp3",
 "12. Technological Disguise - Disguise (Alt. Demo).mp3",
 "13. Technological Disguise - Technological (Instrumental).mp3",
 "14. Technological Disguise - Mindbreak (Instrumental).mp3",
+"TD.png",
+"Technological Disguise.png"
+    ],
+      "Angel's Descent Trilogy": [
+"1. Technological Disguise - Rainfall.mp3",
+"2. Technological Disguise - Interlude.mp3",
+"3. Hazbin Hotel - Gravity (Angel's Descent Remix by Technological Disguise).mp3",
+"4. Technological Disguise - Rainfall (Instrumental).mp3",
+"5. Technological Disguise - Interlude (No Samples).mp3",
+"6. Hazbin Hotel - Gravity (Angel's Descent Remix by Technological Disguise) (Instrumental).mp3",
+"Angel's Descent Trilogy.jpg",
+"lute1.PNG",
+"lute2.PNG",
+"lute3.png"
     ],
       "The Cycle that Never Ceases": [
 "1. Technological Disguise - The Endless.mp3",
+"2. Technological Disguise - Cease.mp3",
+"3. Technological Disguise - Stop.mp3",
+"4. Technological Disguise - Repeat.mp3",
 "5. Technological Disguise - Defeat.mp3",
 "6. Technological Disguise - Fall.mp3",
+"7. Technological Disguise - Lost.mp3",
 "8. Technological Disguise - Self-Taught Lie.mp3",
 "9. Technological Disguise - Reguise.mp3",
+"10. Wrath of the Revenant - A Crack in the Mask.mp3",
 "11. Technological Disguise - Wishes.mp3",
 "12. Technological Disguise - Daylight.mp3",
+"13. Technological Disguise - Dark Night.mp3",
 "14. Technological Disguise - No Recourse.mp3",
+"15. Technological Disguise - The Cycle that Never Ceases.mp3",
 "16. Technological Disguise - The Endless (Instrumental).mp3",
+"17. Technological Disguise - The Cycle that Never Ceases (Instrumental).mp3",
+"TCtNC.png",
+"The Cycle that Never Ceases.png"
     ]
   },
    "Tech Rev": {
