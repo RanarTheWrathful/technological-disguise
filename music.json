@@ -22,6 +22,10 @@
         { 
     "title": "Celldweller - Switchback (Original)",
     "youtube": "https://www.youtube.com/watch?v=gd8eFRBEXVY"
+  }, 
+  { 
+    "title": "Circle of Dust - Technological Disguise",
+    "youtube": "https://www.youtube.com/watch?v=pEM6eKjK95k"
   },
         { 
     "title": "Hazbin Hotel - Gravity",
@@ -39,7 +43,7 @@
   }
 ]
     },
-  "Wrath of the Revenant": {
+  "Archive": {
     "Once Lost: BDaSR": [
 "1. Fallen Hero.mp3",
 "2. Wave Your Hands (2022).mp3",
@@ -110,10 +114,8 @@
   "16. Wrath of the Revenant - The War Within [Instrumental].mp3",
   "SL.jpg",
   "Shadowlight.jpg"
-]
-  },
-  "Paraxial Nolar": {
-    "The M.M.S.O": [
+], 
+"The M.M.S.O": [
       "1. Paraxial Nolar - Confront.mp3",
 "2. Paraxial Nolar - Tyrannical.mp3",
 "3. Celldweller - Switchback (Cover by Paraxial Nolar).mp3",
@@ -125,10 +127,8 @@
 "9. Paraxial Nolar - Merciful.mp3",
 "Paraxial Nolar.png",
 "The M.M.S.O.png"
-    ]
-  },
-  "Technological Disguise": {
-    "Technological Disguise (Self-Titled)": [
+    ],
+     "Technological Disguise (Self-Titled)": [
 "1. Technological Disguise - Technological.mp3",
 "2. Technological Disguise - Daily Grind.mp3",
 "3. Technological Disguise - Menace.mp3",
@@ -178,6 +178,35 @@
 "17. Technological Disguise - The Cycle that Never Ceases (Instrumental).mp3",
 "TCtNC.png",
 "The Cycle that Never Ceases.png"
+    ]
+  },
+   "Tech Rev": {
+    "The Cycle that Never Ceases (Album)": [
+     "TCtNC.png",
+     "The Cycle that Never Ceases.png",
+     "1. Tech Rev - The Endless.mp3",
+  "2. Tech Rev - A Crack in the Mask.mp3",
+  "3. Tech Rev - Broken Dreams.mp3",
+  "4. Tech Rev - Torment and Despair.mp3",
+  "5. Tech Rev - Lost.mp3",
+  "6. Tech Rev - No Innocence.mp3",
+  "7. Tech Rev - The War Within.mp3",
+  "8. Tech Rev - Dark Night.mp3",
+  "9. Tech Rev - Cease.mp3",
+  "10. Tech Rev - Stop.mp3",
+  "11. Tech Rev - Repeat.mp3",
+  "12. Circle of Dust - Technological Disguise (Cover by Tech Rev).mp3",
+  "13. Tech Rev - Dust.mp3",
+  "14. Tech Rev - Exodus.mp3",
+  "15. Tech Rev - The Cycle that Never Ceases.mp3",
+  "16. Tech Rev - The Endless (Alt. Demo).mp3",
+  "17. Tech Rev - Technological Disguise (Alt. Demo).mp3",
+  "18. Tech Rev - The Endless (Instrumental).mp3",
+  "19. Tech Rev - The War Within (Instrumental).mp3",
+  "20. Circle of Dust - Technological Disguise (Instrumental).mp3",
+  "21. Tech Rev - The Cycle that Never Ceases (Instrumental).mp3",
+  "22. Tech Rev - The Endless (Alt. Demo) (Instrumental).mp3",
+  "23. Tech Rev - Technological Disguise (Alt. Demo) (Instrumental).mp3"
     ]
   }
 }
