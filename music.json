@@ -36,14 +36,37 @@
         { 
     "title": "Circle of Dust - Technological Disguise",
     "youtube": "https://www.youtube.com/watch?v=pEM6eKjK95k"
+  }
+],
+    "Sampled": [ 
+        { 
+    
+    "title": "Circle of Dust - Technological Disguise",
+    "youtube": "https://www.youtube.com/watch?v=pEM6eKjK95k"
   },
         { 
     "title": "Hazbin Hotel - Gravity",
     "youtube": "https://youtu.be/G1C1MFv7CKU?si=1eEBbsFlIPR7UHtJ"
+  },
+  { 
+    "title": "Rivot - Never",
+    "youtube": "https://youtu.be/VXNqwPcbM18?si=9hHz-DWyrkit83B1"
+  },
+  { 
+    "title": "Celldweller - Own Little World (Live)",
+    "youtube": "https://www.youtube.com/watch?v=TB9SCz0q8qI"
+  },
+  { 
+    "title": "Celldweller - Switchback (Live)",
+    "youtube": "https://youtu.be/bMGMf0Du0XU?si=VKErcuT5L0Zc2cjU"
+  },
+  { 
+    "title": "Circle of Dust - Nightfall (25th Anniversary Mix)",
+    "youtube": "https://youtu.be/YZPF9WVWmks?si=8u8VjiKwD70ZyeYP"
   }
 ]
     },
-  "Archive": {
+  "Wrath of the Revenant (Archived)": {
     "Once Lost: BDaSR": [
 "Once Lost BDaSR.jpg",
 "Rev.jpg",
@@ -109,16 +132,20 @@
   "11. Wrath of the Revenant - Into the Dust.mp3",
   "12. Wrath of the Revenant - (Just) Another Day.mp3",
   "13. Wrath of the Revenant - Shadows of Dawn.mp3"
-], 
-"The M.M.S.O (Paraxial Nolar)": [
+]
+  },
+  "Paraxial Nolar (Archived)": {
+    "The M.M.S.O": [
 "Paraxial Nolar.png",
 "The M.M.S.O.png",
       "1. Paraxial Nolar - Confront.mp3",
 "3. Celldweller - Switchback (Cover by Paraxial Nolar).mp3",
 "6. Paraxial Nolar - Maniacal.mp3",
-"7. Technological Disguise - Days of Gray.mp3"
-    ],
-     "Technological Disguise (Self-Titled)": [
+"7. Paraxial Nolar (Feat. Wrath of the Revenant) - Days of Gray.mp3"
+    ]
+  },
+  "Technological Disguise (Archived)": {
+    "Technological Disguise (Self-Titled)": [
 "TD.png",
 "Technological Disguise.png",
 "1. Technological Disguise - Technological.mp3",
@@ -145,35 +172,7 @@
 "16. Technological Disguise - The Endless (Instrumental).mp3"
     ]
   },
-   "Tech Rev": {
-    "The Cycle that Never Ceases (Album)": [
-     "TCtNC.png",
-     "The Cycle that Never Ceases.png",
-     "1. Tech Rev - The Endless.mp3",
-  "2. Tech Rev - A Crack in the Mask.mp3",
-  "3. Tech Rev - Broken Dreams.mp3",
-  "4. Tech Rev - Torment and Despair.mp3",
-  "5. Tech Rev - Lost.mp3",
-  "6. Tech Rev - No Innocence.mp3",
-  "7. Tech Rev - The War Within.mp3",
-  "8. Tech Rev - Dark Night.mp3",
-  "9. Tech Rev - Cease.mp3",
-  "10. Tech Rev - Stop.mp3",
-  "11. Tech Rev - Repeat.mp3",
-  "12. Circle of Dust - Technological Disguise (Cover by Tech Rev).mp3",
-  "13. Tech Rev - Dust.mp3",
-  "14. Tech Rev - Exodus.mp3",
-  "15. Tech Rev - The Cycle that Never Ceases.mp3",
-  "16. Tech Rev - The Endless (Alt. Demo).mp3",
-  "17. Tech Rev - Technological Disguise (Alt. Demo).mp3",
-  "18. Tech Rev - The Endless (Instrumental).mp3",
-  "19. Tech Rev - The War Within (Instrumental).mp3",
-  "20. Circle of Dust - Technological Disguise (Instrumental).mp3",
-  "21. Tech Rev - The Cycle that Never Ceases (Instrumental).mp3",
-  "22. Tech Rev - The Endless (Alt. Demo) (Instrumental).mp3",
-  "23. Tech Rev - Technological Disguise (Alt. Demo) (Instrumental).mp3"
-    ],
-
+   "Tech Rev (Unused/Archived Material)": {
     "Angel's Descent (Album)": [
       "AD.jpg",
       "Angel's Descent.jpg",
@@ -207,45 +206,74 @@
     "Repetition (Album)": [
      "R.jpg",
      "Repetition.jpg",
-     "Tech Rev - The Sleeping Dream.mp3",
-  "Tech Rev - The Endless (Wrathful Mix).mp3",
-  "Tech Rev - Cease (Honor Mix).mp3",
-  "Tech Rev - Stop (Cybertech Mix).mp3",
-  "Tech Rev - Repeat (Mercy Mix).mp3",
-  "Tech Rev - The Waking Nightmare.mp3",
-  "Tech Rev - Run, Rebel.mp3",
-  "Tech Rev - Daily Grind.mp3",
-  "Tech Rev - Supremacy.mp3",
-  "Tech Rev - The Abyss.mp3",
-  "Tech Rev - I Am.mp3",
-  "Tech Rev - Erasure.mp3",
-  "Tech Rev - Outer.mp3",
-  "Tech Rev - Twisted World.mp3",
-  "Tech Rev - Ceaseless Dreaming.mp3",
-  "Tech Rev - Twisted World (Alt. Demo).mp3",
-  "Tech Rev - The Endless (Wrathful Mix) (Instrumental).mp3",
-  "Tech Rev - Run, Rebel (Instrumental).mp3",
-  "Tech Rev - The Abyss (Instrumental).mp3",
-  "Tech Rev - I Am (Instrumental).mp3",
-  "Tech Rev - Erasure (Instrumental).mp3"
+     "1. Tech Rev - The Sleeping Dream.mp3",
+  "2. Tech Rev - The Endless (Wrathful Mix).mp3",
+  "3. Tech Rev - Cease (Honor Mix).mp3",
+  "4. Tech Rev - Stop (Cybertech Mix).mp3",
+  "5. Tech Rev - Repeat (Mercy Mix).mp3",
+  "6. Tech Rev - The Waking Nightmare.mp3",
+  "7. Tech Rev - Run, Rebel.mp3",
+  "8. Tech Rev - Daily Grind.mp3",
+  "9. Tech Rev - Supremacy.mp3",
+  "10. Tech Rev - The Abyss.mp3",
+  "11. Tech Rev - I Am.mp3",
+  "12. Tech Rev - Erasure.mp3",
+  "13. Tech Rev - Outer.mp3",
+  "14. Tech Rev - Twisted World.mp3",
+  "15. Tech Rev - Ceaseless Dreaming.mp3",
+  "16. Tech Rev - Twisted World (Alt. Demo).mp3",
+  "17. Tech Rev - The Endless (Wrathful Mix) (Instrumental).mp3",
+  "18. Tech Rev - Run, Rebel (Instrumental).mp3",
+  "19. Tech Rev - The Abyss (Instrumental).mp3",
+  "20. Tech Rev - I Am (Instrumental).mp3",
+  "21. Tech Rev - Erasure (Instrumental).mp3"
+    ]
+  },
+   "Tech Rev (Official Material)": {
+    "The Cycle that Never Ceases (Album)": [
+     "TCtNC.png",
+     "The Cycle that Never Ceases.png",
+     "1. Tech Rev - The Endless.mp3",
+  "2. Tech Rev - A Crack in the Mask.mp3",
+  "3. Tech Rev - Broken Dreams.mp3",
+  "4. Tech Rev - Torment and Despair.mp3",
+  "5. Tech Rev - Lost.mp3",
+  "6. Tech Rev - No Innocence.mp3",
+  "7. Tech Rev - The War Within.mp3",
+  "8. Tech Rev - Dark Night.mp3",
+  "9. Tech Rev - Cease.mp3",
+  "10. Tech Rev - Stop.mp3",
+  "11. Tech Rev - Repeat.mp3",
+  "12. Circle of Dust - Technological Disguise (Cover by Tech Rev).mp3",
+  "13. Tech Rev - Dust.mp3",
+  "14. Tech Rev - Exodus.mp3",
+  "15. Tech Rev - The Cycle that Never Ceases.mp3",
+  "16. Tech Rev - The Endless (Alt. Demo).mp3",
+  "17. Tech Rev - Technological Disguise (Alt. Demo).mp3",
+  "18. Tech Rev - The Endless (Instrumental).mp3",
+  "19. Tech Rev - The War Within (Instrumental).mp3",
+  "20. Circle of Dust - Technological Disguise (Instrumental).mp3",
+  "21. Tech Rev - The Cycle that Never Ceases (Instrumental).mp3",
+  "22. Tech Rev - The Endless (Alt. Demo) (Instrumental).mp3",
+  "23. Tech Rev - Technological Disguise (Alt. Demo) (Instrumental).mp3"
     ],
     "Shattered Realities: Volume 1 (Album)": [
-  "Tech Rev - Shattered Realities.mp3",
-  "Tech Rev - Subject.mp3",
-  "Tech Rev - Night Eyes.mp3",
-  "Tech Rev - File Not Found.mp3",
-  "Tech Rev - Distant.mp3",
-  "Tech Rev - Amongst the Divide.mp3",
-  "Tech Rev - War.mp3",
-  "Tech Rev - Recollect.mp3",
-  "Tech Rev - Son Dernier Combat.mp3",
-  "Tech Rev - Ohcnet.mp3",
-  "Tech Rev - Adrift.mp3",
-  "Tech Rev - Faded Spirits.mp3",
-  "Tech Rev - Knocking on the Walls.mp3",
-  "Tech Rev - Soul Drift.mp3",
-  "Tech Rev - Revenancy.mp3",
-  "Tech Rev - The Simplicity Complex.mp3",
+  "1. Tech Rev - Shattered Realities.mp3",
+  "2. Tech Rev - Subject.mp3",
+  "3. Tech Rev - Night Eyes.mp3",
+  "4. Tech Rev - File Not Found.mp3",
+  "5. Tech Rev - Distant.mp3",
+  "6. Tech Rev - Amongst the Divide.mp3",
+  "7. Tech Rev - War.mp3",
+  "8. Tech Rev - Recollect.mp3",
+  "9. Tech Rev - Son Dernier Combat.mp3",
+  "10. Tech Rev - Ohcnet.mp3",
+  "11. Tech Rev - Adrift.mp3",
+  "12. Tech Rev - Faded Spirits.mp3",
+  "13. Tech Rev - Knocking on the Walls.mp3",
+  "14. Tech Rev - Soul Drift.mp3",
+  "15. Tech Rev - Revenancy.mp3",
+  "16. Tech Rev - The Simplicity Complex.mp3",
   "Shattered Realities Volume 1.png"
 ]
   }
